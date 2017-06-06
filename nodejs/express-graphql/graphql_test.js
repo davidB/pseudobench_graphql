@@ -15,20 +15,20 @@ var MyGraphQLSchema = new GraphQLSchema({
 					        type: GraphQLString,
 							resolve() {
 								          return 'world';
-										          
+
 							}
-							      
+
 				}
-				    
+
 			}
-			  
+
 	})
 
 });
 
 app.use('/graphql', graphqlHTTP({ schema: MyGraphQLSchema, graphiql: true  }));
 
-app.listen(3002, function () {
-	  console.log('Benchmark app listening on port 3002!');
+app.listen(3003, function () {
+	  console.log('Benchmark app listening on port 3003!');
 
 });

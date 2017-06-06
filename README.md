@@ -1,22 +1,34 @@
-# GO
-## benchmark https://github.com/playlyfe/go-graphql
+My pseudo benchmark was made to QUICKLY & ROUGHTLY learn and compare few graphql lib.
 
-### launch the server
+WARNINGS:
+* I didn't compare the featureset, the 2 quickest framework are also the less featured.
+* I compare default code, not super-tuned one
+
+
+# Projects'rules
+
+* layout : `<language>/<http-lib>-<graphql-lib>``
+* port: 3003
+* every server should reply to the same curl request:
+  ```
+  curl "http://localhost:3003/go-graphql?query=\{hello\}"
+  {"data":{"hello":"world"}}%
+  ```
+* every server are test on the same machine (server and client run on the same host)
+* no logging on server-side
+
+# Pseudo benchmark's Results
+
+## GO : echo-go-graphql
+see https://github.com/playlyfe/go-graphql
 
 ```
-cd golang
-go run server_graphql_hello.go
-```
+# launch the server
+cd golang/echo-go-graphql
+go run server.go
 
-### launch the client
-
-```
-curl "http://localhost:3003/go-graphql?query=\{hello\}"
-{"data":{"hello":"world"}}%
-```
-
-```
-wrk -t12 -c400 -d30s --timeout 10s "http://localhost:3003/go-graphql?query={hello}"
+# launch the client
+wrk -t12 -c400 -d30s --timeout 10s "http://localhost:3003/graphql?query={hello}"
 Running 30s test @ http://localhost:3003/go-graphql?query={hello}
   12 threads and 400 connections
   Thread Stats   Avg      Stdev     Max   +/- Stdev
@@ -28,23 +40,15 @@ Requests/sec:  55799.27
 Transfer/sec:      7.61MB
 ```
 
-## benchmark https://github.com/graphql-go/graphql
-
-### launch the server
-
-```
-cd golang
-go run server_graphql_hello.go
-```
-
-### launch the client
+## GO : echo-graphql-go
+see https://github.com/graphql-go/graphql
 
 ```
-curl "http://localhost:3003/graphql-go?query=\{hello\}"
-{"data":{"hello":"world"}}%
-```
+# launch the server
+cd golang/echo-graphql-go
+go run server.go
 
-```
+# launch the client
 wrk -t12 -c400 -d30s --timeout 10s "http://localhost:3003/graphql-go?query={hello}"
 Running 30s test @ http://localhost:3003/graphql-go?query={hello}
   12 threads and 400 connections
@@ -57,25 +61,16 @@ Requests/sec:  15761.45
 Transfer/sec:      2.15MB
 ```
 
-# NodeJS
-
-## benchmark express-graphql
-
-### launch the server
+## NodeJS: express-graphql
 
 ```
-cd nodejs
+# launch the server
+cd nodejs/express-graphql
 npm install
 node graphql_test.js
-```
 
-### launch the client
-```
-curl "http://localhost:3002/graphql?query=\{hello\}"
-{"data":{"hello":"world"}}%
-```
-```
-wrk -t12 -c400 -d30s --timeout 10s "http://localhost:3002/graphql?query={hello}"
+# launch the client
+wrk -t12 -c400 -d30s --timeout 10s "http://localhost:3003/graphql?query={hello}"
 Running 30s test @ http://localhost:3002/graphql?query={hello}
   12 threads and 400 connections
   Thread Stats   Avg      Stdev     Max   +/- Stdev
@@ -87,27 +82,17 @@ Requests/sec:   3822.38
 Transfer/sec:    731.63KB
 ```
 
-# Rust
+## Rust: iron-juniper
 
-## benchmark juniper-iron
-
-### launch the server
-performance of debug ~ release x 6
+* performance of debug ~ release x 6
+* output is json prettified
 
 ```
-cd rust
+# launch the server
+cd rust/iron-juniper
 cargo run --release
-```
-### launch the client
-```
-curl "http://localhost:3003/graphql?query=\{hello\}"
-{
-  "data": {
-    "hello": "world"
-  }
-}%
-```
-```
+
+# launch the client
 wrk -t12 -c400 -d30s --timeout 10s "http://localhost:3003/graphql?query={hello}"
 Running 30s test @ http://localhost:3003/graphql?query={hello}
   12 threads and 400 connections
@@ -119,6 +104,7 @@ Running 30s test @ http://localhost:3003/graphql?query={hello}
 Requests/sec:  55751.66
 Transfer/sec:      7.87MB
 ```
+
 with debug mode (for memory and reference)
 ```
 wrk -t12 -c400 -d30s --timeout 10s "http://localhost:3003/graphql?query={hello}"
@@ -133,23 +119,14 @@ Requests/sec:   7398.63
 Transfer/sec:      1.04MB
 ```
 
-# Scala
-
-## akka-http + sangria
-
-### launch the server
+## Scala: akka-http-sangria
 
 ```
-cd scala
+# launch the server
+cd scala/akka-http-sangria
 sbt run
-```
 
-### launch the client
-```
-curl "http://localhost:3003/graphql?query=\{hello\}"
-{"data":{"hello":"world"}}%
-```
-```
+# launch the client
 wrk -t12 -c400 -d30s --timeout 10s "http://localhost:3003/graphql?query={hello}"
 Running 30s test @ http://localhost:3003/graphql?query={hello}
   12 threads and 400 connections

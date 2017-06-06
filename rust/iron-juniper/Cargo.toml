@@ -1,0 +1,12 @@
+[package]
+name = "iron-juniper"
+version = "0.1.0"
+authors = ["David Bernard <david.bernard.31@gmail.com>"]
+
+[dependencies]
+juniper = { version = "0.7.0", features = ["iron-handlers"] }
+iron = "^0.5.1"
+router = "^0.5.0"
+mount = "^0.3.0"
+logger = "^0.3.0"
+serde = "^0.9.1"

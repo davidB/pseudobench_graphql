@@ -1,4 +1,4 @@
-name := "sangria-akka-http-example"
+name := "akka-http-sangria"
 version := "0.1.0-SNAPSHOT"
 
 description := "adaptation of sangria-akka-http-example for the helloworld benchmark"
