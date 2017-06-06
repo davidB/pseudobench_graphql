@@ -97,12 +97,12 @@ wrk -t12 -c400 -d30s --timeout 10s "http://localhost:3003/graphql?query={hello}"
 Running 30s test @ http://localhost:3003/graphql?query={hello}
   12 threads and 400 connections
   Thread Stats   Avg      Stdev     Max   +/- Stdev
-    Latency     1.11ms  290.11us  17.75ms   85.01%
-    Req/Sec     5.10k     4.51k   18.81k    75.33%
-  1674581 requests in 30.04s, 236.36MB read
+    Latency     1.28ms  467.84us  40.20ms   91.16%
+    Req/Sec     4.89k     2.23k   24.64k    62.99%
+  1461612 requests in 30.10s, 206.30MB read
   Socket errors: connect 0, read 530, write 0, timeout 0
-Requests/sec:  55751.66
-Transfer/sec:      7.87MB
+Requests/sec:  48553.76
+Transfer/sec:      6.85MB
 ```
 
 with debug mode (for memory and reference)
@@ -127,14 +127,14 @@ cd scala/akka-http-sangria
 sbt run
 
 # launch the client
-wrk -t12 -c400 -d30s --timeout 10s "http://localhost:3003/graphql?query={hello}"
+wrk -t12 -c400 -d30s --timeout 10s 'http://localhost:3003/graphql?query={hello}'
 Running 30s test @ http://localhost:3003/graphql?query={hello}
   12 threads and 400 connections
   Thread Stats   Avg      Stdev     Max   +/- Stdev
-    Latency    83.79ms  318.58ms   3.46s    95.72%
-    Req/Sec     1.43k   600.86     2.68k    66.04%
-  510776 requests in 30.09s, 77.94MB read
-  Socket errors: connect 0, read 649, write 0, timeout 0
-Requests/sec:  16976.95
-Transfer/sec:      2.59MB
+    Latency   205.25ms  662.75ms   5.08s    92.91%
+    Req/Sec     1.02k   478.02     3.90k    64.36%
+  350211 requests in 30.03s, 53.44MB read
+  Socket errors: connect 0, read 945, write 3, timeout 0
+Requests/sec:  11661.75
+Transfer/sec:      1.78MB
 ```
