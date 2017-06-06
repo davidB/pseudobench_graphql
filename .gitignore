@@ -1,0 +1,15 @@
+# nodejs
+node_modules
+
+# rust
+target
+
+# scala
+project
+target
+
+# editor
+.vscode
+pc.stdout.log
+.ensime*
+ensime*
