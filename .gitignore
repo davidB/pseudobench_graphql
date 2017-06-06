@@ -1,15 +1,17 @@
 # nodejs
-node_modules
+node_modules/
 
 # rust
-target
+target/
+**/*.rs.bk
+Cargo.lock
 
 # scala
-project
-target
+project/
+target/
 
 # editor
-.vscode
+.vscode/
 pc.stdout.log
 .ensime*
 ensime*
